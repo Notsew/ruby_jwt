@@ -19,13 +19,15 @@ payload is the data you are wanted to send.
 	{:name => "Chris", :role => "Admin"}
 
 payload_options are the current named claims in the JWT draft.  These will be merged into the payload hash.
+
 	:iss => the issuer
 	:aud => the audience the token is intended for
 	:exp => should expire in X number of seconds.  This will be added to the :iat in the payload to give you the datetime in seconds the token will expire.
 
-header_options are the current typ and algorithm.  you can also pass in any custom fields and they will be added to the header.
+header_options are the current typ and alg.  you can also pass in any custom fields and they will be added to the header.
 
 To decode the a token:
+
 	JWT.decode(token)
 
 Note this will not verify the token.  This will return a DecodeResponse object, it consists of header, payload, and signature
