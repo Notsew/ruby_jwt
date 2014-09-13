@@ -40,6 +40,7 @@ To verify a token:
 
 This will return a verificationResponse object, it consists of success and message.
 The options field is where you pass a hash of the audience and/or the issuer. Audience can be an array or a string, this library will verify that the audience in the token is included in the audience that you supply.  Same with the issuer, if issuer is passed in, they will be compared and if different will return false. 
+
 	verified = JWT.verify(token,"secret",{:iss => "my_app"})
 	// if the issuer is wrong it will respond with the Verification response object with success = false and message = "JWT issuer is invalid"
 	// if the token has expired it will respond with a VerificationResponse object with success  = false and message = "JWT is expired."
