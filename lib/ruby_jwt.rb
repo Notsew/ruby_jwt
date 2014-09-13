@@ -29,8 +29,10 @@ module JWT
 	}
 	module_function
 
-	def sign(payload,key,payload_options = {},header_options = {})
+	def sign(payload,key,payload_options,header_options)
 		jwt_parts = []
+		header_options = header_options || {}
+		payload_options = payload_options || {}
 		header_options[:alg] = header_options[:alg] || "HS256"
 		if(header_options[:alg] != "none" and (!key))
 			raise JWT::SignError.new("Key cannot be blank if algorithm is not 'none'")

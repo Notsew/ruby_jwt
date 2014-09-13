@@ -11,7 +11,7 @@ class RubyJwtTest < ActiveSupport::TestCase
   end
 
   test "should encode and decode and verify hmac" do
-  	jwt = JWT.sign(@payload,@secret,@payload_options)
+  	jwt = JWT.sign(@payload,@secret,@payload_options,nil)
   	decoded = JWT.decode(jwt)
   	verified_jwt = JWT.verify(jwt,@secret,@payload_options)
     assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
