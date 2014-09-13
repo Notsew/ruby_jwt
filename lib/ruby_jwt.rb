@@ -84,7 +84,11 @@ module JWT
 	#utility methods
 
 	def json_decode_data(data)
-		return JSON.load(base64urldecode(data)).symbolize_keys!
+		if defined?(Rails)
+			return JSON.load(base64urldecode(data)).symbolize_keys!
+		else
+			return symbolize_keys(JSON.load(base64urldecode(data)))
+		end
 	end
 
 	def encode_header(header_options)
@@ -144,6 +148,9 @@ module JWT
 
 	end
 
+	def symbolize_keys(hash)
+		return hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
+	end
 
 	def time_compare(a,b)
 	  	return false if a.nil? || b.nil? || a.empty? || b.empty? || a.bytesize != b.bytesize
