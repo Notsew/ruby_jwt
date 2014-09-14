@@ -33,6 +33,16 @@ class RubyJwtTest < ActiveSupport::TestCase
     assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
   end
 
+  test "should encode and decode ECDSA" do
+    pk = OpenSSL::PKey::EC.new("prime192v1")
+    pk.generate_key
+    @header = {:typ => "JWT", :alg => "ES384"}
+    jwt = JWT.sign(@payload,pk,@payload_options,@header)
+    decoded = JWT.decode(jwt)
+    verified_jwt = JWT.verify(jwt,pk,@payload_options)
+    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
+  end
+
   test "decodes and verifies existing token" do
     secret = "0zWThVpyGq4QujsMHzTqNYZUbeXGB2Sa"
     token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJDaHJpcyBXZXN0b24iLCJpYXQiOjE0MTA2MTc1NzQsImV4cCI6MTY5MDUwNzYzOTcsImF1ZCI6Ind3dy5leGFtcGxlLmNvbSIsInN1YiI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJHaXZlbk5hbWUiOiJKb2hubnkiLCJTdXJuYW1lIjoiUm9ja2V0IiwiRW1haWwiOiJqcm9ja2V0QGV4YW1wbGUuY29tIiwiUm9sZSI6WyJNYW5hZ2VyIiwiUHJvamVjdCBBZG1pbmlzdHJhdG9yIl19.llRwkrzrkAu_n4XFGvZpHR3J_p_Ow3er7LxJBZS-4M4"    

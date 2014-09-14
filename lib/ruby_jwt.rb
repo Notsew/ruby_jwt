@@ -22,6 +22,11 @@ module JWT
 			@message = message
 		end
 	end
+
+	class OpenSSL::PKey::EC
+		alias_method :private?, :private_key?
+	end
+
 	SIGNATURES = {"256" => OpenSSL::Digest::SHA256.new(), "384" => OpenSSL::Digest::SHA384.new(), "512" => OpenSSL::Digest::SHA512.new()}
 	# SIGNATURES = {
 	# 	"HS256" => OpenSSL::Digest::SHA256.new(), "HS384" => OpenSSL::Digest::SHA384.new(), "HS512" => OpenSSL::Digest::SHA512.new(),
@@ -110,6 +115,8 @@ module JWT
 			return base64urlencode(OpenSSL::HMAC.digest(SIGNATURES[alg.gsub("HS","")], key, data))
 		when "RS256", "RS384", "RS512"
 			return base64urlencode(key.sign(SIGNATURES[alg.gsub("RS","")],data))
+		when "ES256", "ES384", "ES512"
+			return base64urlencode(key.sign(SIGNATURES[alg.gsub("ES","")],data))
 		else
 			raise NotImplementedError.new("Unsupported signing method!")
 		end
@@ -123,6 +130,8 @@ module JWT
 			return time_compare(signature,OpenSSL::HMAC.digest(SIGNATURES[alg.gsub("HS","")], key, data))
 		when "RS256", "RS384", "RS512"
 			return key.verify(SIGNATURES[alg.gsub("RS","")],signature, data)
+		when "ES256", "ES384", "ES512"
+			return key.verify(SIGNATURES[alg.gsub("ES","")],signature, data)
 		else
 			raise NotImplementedError.new("Unsupported signing method!")
 		end

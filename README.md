@@ -13,7 +13,7 @@ To create/Sign a JWT
 Note that this gem uses symbols in all of the hashes, usings strings will currently break things.
 header_options and payload_options are hashes, they can be set to nil or you can pass an empty hash if not setting any options
 
-Secret can either be a RSA key or shared secret for HMAC or "none"
+Secret can either be a RSA key or shared secret for HMAC or "none" or ECDSA key(experimental)
 
 payload is the data you are wanted to send.
 	{:name => "Chris", :role => "Admin"}
@@ -25,6 +25,10 @@ payload_options are the current named claims in the JWT draft.  These will be me
 	:exp => should expire in X number of seconds.  This will be added to the :iat in the payload to give you the datetime in seconds the token will expire.
 
 header_options are the current typ and alg.  you can also pass in any custom fields and they will be added to the header.
+	
+	:alg => the algorithm to use, supported algorithms are listed below
+	:typ => this will always be set to JWT
+	:custom_header => you can supply custom header fields.
 
 To decode the a token:
 
@@ -52,6 +56,8 @@ The options field is where you pass a hash of the audience and/or the issuer. Au
 # Currently Supported Algorithms 
 Array of supported algorithms. The following algorithms are currently supported.  This will default to HS256, unless you pass {:alg => "your_choice_of_algo"} in the header options when doing JWT.sign
 
+I have added support for ECDSA.  I have not dealt with ECDSA much, so this is a tad experimental.
+
 alg Parameter Value | Digital Signature or MAC Algorithm 
 ----------------|----------------------------
 HS256 | HMAC using SHA-256 hash algorithm 
@@ -60,4 +66,7 @@ HS512 | HMAC using SHA-512 hash algorithm
 RS256 | RSA using SHA-256 hash algorithm
 RS384 | RSA using SHA-384 hash algorithm
 RS512 | RSA using SHA-512 hash algorithm
+ES256 | ECDSA using SHA-256 hash algorithm
+ES384 | ECDSA using SHA-384 hash algorithm
+ES512 | ECDSA using SHA-512 hash algorithm
 none | No digital signature or MAC value included
