@@ -22,11 +22,11 @@ module JWT
 			@message = message
 		end
 	end
-
-	SIGNATURES = {
-		"HS256" => OpenSSL::Digest::SHA256.new(), "HS384" => OpenSSL::Digest::SHA384.new(), "HS512" => OpenSSL::Digest::SHA512.new(),
-		"RS256" => OpenSSL::Digest::SHA256.new(), "RS384" => OpenSSL::Digest::SHA384.new(), "RS512" => OpenSSL::Digest::SHA512.new()
-	}
+	SIGNATURES = {"256" => OpenSSL::Digest::SHA256.new(), "384" => OpenSSL::Digest::SHA384.new(), "512" => OpenSSL::Digest::SHA512.new()}
+	# SIGNATURES = {
+	# 	"HS256" => OpenSSL::Digest::SHA256.new(), "HS384" => OpenSSL::Digest::SHA384.new(), "HS512" => OpenSSL::Digest::SHA512.new(),
+	# 	"RS256" => OpenSSL::Digest::SHA256.new(), "RS384" => OpenSSL::Digest::SHA384.new(), "RS512" => OpenSSL::Digest::SHA512.new()
+	# }
 	module_function
 
 	def sign(payload,key,payload_options,header_options)
@@ -107,9 +107,9 @@ module JWT
 		when "none"
 			return ""
 		when "HS256","HS384", "HS512"
-			return base64urlencode(OpenSSL::HMAC.digest(SIGNATURES[alg], key, data))
+			return base64urlencode(OpenSSL::HMAC.digest(SIGNATURES[alg.gsub("HS","")], key, data))
 		when "RS256", "RS384", "RS512"
-			return base64urlencode(key.sign(SIGNATURES[alg],data))
+			return base64urlencode(key.sign(SIGNATURES[alg.gsub("RS","")],data))
 		else
 			raise NotImplementedError.new("Unsupported signing method!")
 		end
@@ -120,9 +120,9 @@ module JWT
 		when "none"
 			return true
 		when "HS256","HS384", "HS512"
-			return time_compare(signature,OpenSSL::HMAC.digest(SIGNATURES[alg], key, data))
+			return time_compare(signature,OpenSSL::HMAC.digest(SIGNATURES[alg.gsub("HS","")], key, data))
 		when "RS256", "RS384", "RS512"
-			return key.verify(SIGNATURES[alg],signature, data)
+			return key.verify(SIGNATURES[alg.gsub("RS","")],signature, data)
 		else
 			raise NotImplementedError.new("Unsupported signing method!")
 		end

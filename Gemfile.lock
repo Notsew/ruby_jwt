@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ruby_jwt (1.0.3)
+    ruby_jwt (1.0.4)
 
 GEM
   remote: https://rubygems.org/
