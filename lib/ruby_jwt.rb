@@ -23,9 +23,9 @@ module JWT
 		end
 	end
 
-	class OpenSSL::PKey::EC
-		alias_method :private?, :private_key?
-	end
+	# class OpenSSL::PKey::EC
+	# 	alias_method :private?, :private_key?
+	# end
 
 	SIGNATURES = {"256" => OpenSSL::Digest::SHA256.new(), "384" => OpenSSL::Digest::SHA384.new(), "512" => OpenSSL::Digest::SHA512.new()}
 	# SIGNATURES = {
@@ -116,7 +116,8 @@ module JWT
 		when "RS256", "RS384", "RS512"
 			return base64urlencode(key.sign(SIGNATURES[alg.gsub("RS","")],data))
 		when "ES256", "ES384", "ES512"
-			return base64urlencode(key.sign(SIGNATURES[alg.gsub("ES","")],data))
+			return base64urlencode(key.dsa_sign_asn1(SIGNATURES[alg.gsub("ES","")].digest(data)))
+			#return base64urlencode(key.sign(SIGNATURES[alg.gsub("ES","")],data))
 		else
 			raise NotImplementedError.new("Unsupported signing method!")
 		end
@@ -131,7 +132,8 @@ module JWT
 		when "RS256", "RS384", "RS512"
 			return key.verify(SIGNATURES[alg.gsub("RS","")],signature, data)
 		when "ES256", "ES384", "ES512"
-			return key.verify(SIGNATURES[alg.gsub("ES","")],signature, data)
+			return key.dsa_verify_asn1(SIGNATURES[alg.gsub("ES","")].digest(data),signature)
+			#return key.verify(SIGNATURES[alg.gsub("ES","")],signature, data)
 		else
 			raise NotImplementedError.new("Unsupported signing method!")
 		end
