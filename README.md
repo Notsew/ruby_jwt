@@ -49,7 +49,8 @@ Note this will not verify the token.  This will return a DecodeResponse object, 
 To verify a token:
 	JWT.verify(token,secret,options)
 
-This will return a verificationResponse object, it consists of success and message.
+This will return a verificationResponse object, it consists of success and message and if success is true it contains the decoded token which is a DecodeResponse object as seen above.
+
 The options field is where you pass a hash of the audience and/or the issuer. Audience can be an array or a string, this library will verify that the audience in the token is included in the audience that you supply.  Same with the issuer, if issuer is passed in, they will be compared and if different will return false. 
 
 	verified = JWT.verify(token,"secret",{:iss => "my_app"})
@@ -57,7 +58,10 @@ The options field is where you pass a hash of the audience and/or the issuer. Au
 	// if the token has expired it will respond with a VerificationResponse object with success  = false and message = "JWT is expired."
 	// if the token nbf has not passed yet, it will return false with the proper message.
 	// if the token's audience is not included in the audience you pass in, this method will retun false with message of JWT audience is invalid.
-	// if the token is valid success will be true.
+	// if the token is valid success will be true and decoded_token will contain a DecodeResponse object.
+	verified.success == true
+	verified.decoded_token.header
+	verified.decoded.payload[:some_value]
 
 
 # Currently Supported Algorithms 

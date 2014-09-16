@@ -15,11 +15,12 @@ module JWT
 		end
 	end
 	class VerificationResponse
-		attr_accessor :success, :message
+		attr_accessor :success, :message, :decoded_token
 
-		def initialize(success,message)
+		def initialize(success,message, decoded = nil)
 			@success = success
 			@message = message
+			@decoded_token = decoded
 		end
 	end
 
@@ -28,10 +29,7 @@ module JWT
 	# end
 
 	SIGNATURES = {"256" => OpenSSL::Digest::SHA256.new(), "384" => OpenSSL::Digest::SHA384.new(), "512" => OpenSSL::Digest::SHA512.new()}
-	# SIGNATURES = {
-	# 	"HS256" => OpenSSL::Digest::SHA256.new(), "HS384" => OpenSSL::Digest::SHA384.new(), "HS512" => OpenSSL::Digest::SHA512.new(),
-	# 	"RS256" => OpenSSL::Digest::SHA256.new(), "RS384" => OpenSSL::Digest::SHA384.new(), "RS512" => OpenSSL::Digest::SHA512.new()
-	# }
+
 	module_function
 
 	def sign(payload,key,payload_options,header_options)
@@ -67,10 +65,11 @@ module JWT
 	def verify(token,secret,options={})
 		return VerificationResponse.new(false, "JWT cannot be blank") if !token or token.empty?
 		jwt_parts = token.split(".")
-		alg = json_decode_data(jwt_parts[0])[:alg]
+		jwt = decode(token)
+		alg = jwt.header[:alg]
 		return VerificationResponse.new(false,"Key cannot be blank if algorithm is not 'none'") if(alg != "none" and !secret) 
-		payload = json_decode_data(jwt_parts[1])
-		signature = base64urldecode(jwt_parts[2]) if alg != "none"
+		payload = jwt.payload
+		signature = base64urldecode(jwt.signature) if alg != "none"
 		current_time = Time.now.to_i
 		if(payload[:exp] and current_time >= payload[:exp])
 			return VerificationResponse.new(false,"JWT is expired.")
@@ -91,7 +90,7 @@ module JWT
 
 		return VerificationResponse.new(false,"JWT signature is invalid.") if !verify_signature(alg,secret,jwt_parts[0..1].join("."),signature)
 
-		return VerificationResponse.new(true,"JWT is valid.")
+		return VerificationResponse.new(true,"JWT is valid.",jwt)
 	end
 
 

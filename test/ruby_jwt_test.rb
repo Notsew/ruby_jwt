@@ -14,7 +14,7 @@ class RubyJwtTest < ActiveSupport::TestCase
   	jwt = JWT.sign(@payload,@secret,@payload_options,nil)
   	decoded = JWT.decode(jwt)
   	verified_jwt = JWT.verify(jwt,@secret,@payload_options)
-    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
+    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success) and assert_equal(@header,verified_jwt.decoded_token.header, "header is invalid") and assert_equal(@payload,verified_jwt.decoded_token.payload,"payload is invalid")
   end
 
    test "should encode and decode none" do
@@ -22,7 +22,7 @@ class RubyJwtTest < ActiveSupport::TestCase
   	jwt = JWT.sign(@payload,nil,@payload_options,@header)
   	decoded = JWT.decode(jwt)
   	verified_jwt = JWT.verify(jwt,nil,@payload_options)
-    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
+    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success) and assert_equal(@header,verified_jwt.decoded_token.header, "header is invalid") and assert_equal(@payload,verified_jwt.decoded_token.payload,"payload is invalid")
   end
 
   test "should encode and decode RSA" do
@@ -30,7 +30,7 @@ class RubyJwtTest < ActiveSupport::TestCase
   	jwt = JWT.sign(@payload,@key,@payload_options,@header)
   	decoded = JWT.decode(jwt)
   	verified_jwt = JWT.verify(jwt,@key,@payload_options)
-    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
+    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success) and assert_equal(@header,verified_jwt.decoded_token.header, "header is invalid") and assert_equal(@payload,verified_jwt.decoded_token.payload,"payload is invalid")
   end
 
   test "should encode and decode ECDSA" do
@@ -40,7 +40,7 @@ class RubyJwtTest < ActiveSupport::TestCase
     jwt = JWT.sign(@payload,pk,@payload_options,@header)
     decoded = JWT.decode(jwt)
     verified_jwt = JWT.verify(jwt,pk,@payload_options)
-    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success)
+    assert_equal(@header,decoded.header, "header is invalid") and assert_equal(@payload,decoded.payload,"payload is invalid") and assert_equal(true,verified_jwt.success) and assert_equal(@header,verified_jwt.decoded_token.header, "header is invalid") and assert_equal(@payload,verified_jwt.decoded_token.payload,"payload is invalid")
   end
 
   test "decodes and verifies existing token" do
