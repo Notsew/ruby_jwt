@@ -46,6 +46,10 @@ module JWT
 		if(payload_options[:exp])
 			payload_options	[:exp] += payload[:iat] 
 		end
+
+		if(payload_options[:nbf])
+			payload_options[:nbf] += payload[:iat]
+		end
 		payload.merge!(payload_options)
 		jwt_parts << encode_header(header_options)
 		jwt_parts << encode_payload(payload)
@@ -70,6 +74,10 @@ module JWT
 		
 		if(payload[:exp] and Time.now.to_i >= payload[:exp])
 			return VerificationResponse.new(false,"JWT is expired.")
+		end
+
+		if(payload[:nbf] and Time.now.to_i < payload[:nbf])
+			return VerificationResponse.new(false, "JWT nbf has not passed yet.")
 		end
 
 		if(options[:iss])

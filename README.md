@@ -11,18 +11,23 @@ To create/Sign a JWT
 	JWT.sign(payload,secret,payload_options,header_options)
 
 Note that this gem uses symbols in all of the hashes, usings strings will currently break things.
-header_options and payload_options are hashes, they can be set to nil or you can pass an empty hash if not setting any options
+header_options and payload_options are hashes, they can be set to nil or you can pass an empty hash if not setting any options.
 
-Secret can either be a RSA key or shared secret for HMAC or "none" or ECDSA key
+Secret can either be a RSA key, shared secret for HMAC, "none" for plaintext JWTs, or an ECDSA key
 
 payload is the data you are wanted to send.
+
 	{:name => "Chris", :role => "Admin"}
 
 payload_options are the current named claims in the JWT draft.  These will be merged into the payload hash.
+Note: :iat(issued at time) is automatically added to the payload.
 
 	:iss => the issuer
 	:aud => the audience the token is intended for
 	:exp => should expire in X number of seconds.  This will be added to the :iat in the payload to give you the datetime in seconds the token will expire.
+	:nbf => should not accept before X number of seconds.  This value is added to the :iat to determine when it should accept the token.
+	:jti => This is a unique identifier that your application can check for to make a one time use token.
+	:sub => the subject of the token.
 
 header_options are the current typ and alg.  you can also pass in any custom fields and they will be added to the header.
 	
@@ -30,16 +35,16 @@ header_options are the current typ and alg.  you can also pass in any custom fie
 	:typ => this will always be set to JWT
 	:custom_header => you can supply custom header fields.
 
-To decode the a token:
+To decode a token:
 
 	JWT.decode(token)
 
 Note this will not verify the token.  This will return a DecodeResponse object, it consists of header, payload, and signature
 
 	decoded = JWT.decode(token)
-	decoded.payload
+	decoded.payload # displays the payload
 	decoded.payload[:name] # displays Chris
-	decoded.header[:alg]
+	decoded.header[:alg] # displays the algorithm used to sign the token
 
 To verify a token:
 	JWT.verify(token,secret,options)
@@ -50,6 +55,8 @@ The options field is where you pass a hash of the audience and/or the issuer. Au
 	verified = JWT.verify(token,"secret",{:iss => "my_app"})
 	// if the issuer is wrong it will respond with the Verification response object with success = false and message = "JWT issuer is invalid"
 	// if the token has expired it will respond with a VerificationResponse object with success  = false and message = "JWT is expired."
+	// if the token nbf has not passed yet, it will return false with the proper message.
+	// if the token's audience is not included in the audience you pass in, this method will retun false with message of JWT audience is invalid.
 	// if the token is valid success will be true.
 
 

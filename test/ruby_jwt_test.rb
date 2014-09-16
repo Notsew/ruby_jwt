@@ -58,6 +58,13 @@ class RubyJwtTest < ActiveSupport::TestCase
     assert_equal(false, verified_jwt.success) and assert_equal("JWT is expired.",verified_jwt.message)
   end
 
+  test "returns false if before nbf" do
+    @payload_options[:nbf] = 50
+    jwt = JWT.sign(@payload,@secret,@payload_options,@header)
+    verified_jwt = JWT.verify(jwt,@secret,@payload_options)
+    assert_equal(false, verified_jwt.success) and assert_equal("JWT nbf has not passed yet.",verified_jwt.message)
+  end
+
   test "returns false if wrong audience" do
     jwt = JWT.sign(@payload,@secret,@payload_options,@header)
     verified_jwt = JWT.verify(jwt,@secret,{:aud => "not_your_app"})
