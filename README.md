@@ -13,7 +13,7 @@ To create/Sign a JWT
 Note that this gem uses symbols in all of the hashes, usings strings will currently break things.
 header_options and payload_options are hashes, they can be set to nil or you can pass an empty hash if not setting any options
 
-Secret can either be a RSA key or shared secret for HMAC or "none" or ECDSA key(experimental)
+Secret can either be a RSA key or shared secret for HMAC or "none" or ECDSA key
 
 payload is the data you are wanted to send.
 	{:name => "Chris", :role => "Admin"}
@@ -55,8 +55,6 @@ The options field is where you pass a hash of the audience and/or the issuer. Au
 
 # Currently Supported Algorithms 
 Array of supported algorithms. The following algorithms are currently supported.  This will default to HS256, unless you pass {:alg => "your_choice_of_algo"} in the header options when doing JWT.sign
-
-I have added support for ECDSA.  I have not dealt with ECDSA much, so this is a tad experimental.
 
 alg Parameter Value | Digital Signature or MAC Algorithm 
 ----------------|----------------------------
