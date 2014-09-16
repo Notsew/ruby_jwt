@@ -61,7 +61,7 @@ The options field is where you pass a hash of the audience and/or the issuer. Au
 	// if the token is valid success will be true and decoded_token will contain a DecodeResponse object.
 	verified.success == true
 	verified.decoded_token.header
-	verified.decoded.payload[:some_value]
+	verified.decoded_token.payload[:some_value]
 
 
 # Currently Supported Algorithms 
