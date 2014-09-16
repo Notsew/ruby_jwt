@@ -71,12 +71,12 @@ module JWT
 		return VerificationResponse.new(false,"Key cannot be blank if algorithm is not 'none'") if(alg != "none" and !secret) 
 		payload = json_decode_data(jwt_parts[1])
 		signature = base64urldecode(jwt_parts[2]) if alg != "none"
-		
-		if(payload[:exp] and Time.now.to_i >= payload[:exp])
+		current_time = Time.now.to_i
+		if(payload[:exp] and current_time >= payload[:exp])
 			return VerificationResponse.new(false,"JWT is expired.")
 		end
 
-		if(payload[:nbf] and Time.now.to_i < payload[:nbf])
+		if(payload[:nbf] and current_time < payload[:nbf])
 			return VerificationResponse.new(false, "JWT nbf has not passed yet.")
 		end
 
