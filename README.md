@@ -1,5 +1,6 @@
 ruby_jwt
 ========
+A Ruby gem for [JSON Web Token Draft 25](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-25).
 
 # Installation
 
@@ -47,6 +48,7 @@ Note this will not verify the token.  This will return a DecodeResponse object, 
 	decoded.header[:alg] # displays the algorithm used to sign the token
 
 To verify a token:
+
 	JWT.verify(token,secret,options)
 
 This will return a verificationResponse object, it consists of success and message and if success is true it contains the decoded token which is a DecodeResponse object as seen above.
