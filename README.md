@@ -11,12 +11,11 @@ To create/Sign a JWT
 
 	JWT.sign(payload,secret,payload_options,header_options)
 
-Note that this gem uses symbols in all of the hashes, usings strings will currently break things.
 header_options and payload_options are hashes, they can be set to nil or you can pass an empty hash if not setting any options.
 
 Secret can either be a RSA key, shared secret for HMAC, "none" for plaintext JWTs, or an ECDSA key
 
-payload is the data you are wanted to send.
+payload is the data you are wanting to send.
 
 	{:name => "Chris", :role => "Admin"}
 
@@ -40,7 +39,7 @@ To decode a token:
 
 	JWT.decode(token)
 
-Note this will not verify the token.  This will return a DecodeResponse object, it consists of header, payload, and signature
+Note this will not verify the token.  This will return a DecodeResponse object, it consists of header, payload, and signature.  The header and payload are hashses that use symbols.
 
 	decoded = JWT.decode(token)
 	decoded.payload # displays the payload
