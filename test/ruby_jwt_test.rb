@@ -84,7 +84,7 @@ class RubyJwtTest < ActiveSupport::TestCase
   end
 
   test "returns not implemented error for unsupported algorithm" do
-    assert_raises(NotImplementedError){@header[:alg] = "HS422";jwt = JWT.sign(@payload,@secret,@payload_options,@header)}
+    assert_raises(JWT::SignError){@header[:alg] = "HS422";jwt = JWT.sign(@payload,@secret,@payload_options,@header)}
   end
 
   test "returns decode error for invalid base64" do

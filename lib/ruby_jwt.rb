@@ -67,11 +67,14 @@ module JWT
 		jwt_parts = token.split(".")
 		jwt = decode(token)
 		alg = jwt.header[:alg]
-		raise VerificationError.new("Key cannot be blank if algorithm is not 'none'") if(alg != "none" and !secret) 
+		
 		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count < 3 and alg != "none")
 		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count < 2 and alg == "none")
+
 		payload = jwt.payload
-		signature = base64urldecode(jwt.signature) if alg != "none"
+		signature = jwt.signature.nil? ? "none" : base64urldecode(jwt.signature)
+
+		raise VerificationError.new("JWT signature is required.") if(jwt.signature.nil? and !secret.nil?) 
 		current_time = Time.now.to_i
 		if(payload[:exp] and current_time >= payload[:exp])
 			raise VerificationError.new("JWT is expired.")
@@ -128,7 +131,7 @@ module JWT
 			return base64urlencode(key.dsa_sign_asn1(SIGNATURES[alg.gsub("ES","")].digest(data)))
 			#return base64urlencode(key.sign(SIGNATURES[alg.gsub("ES","")],data))
 		else
-			raise NotImplementedError.new("Unsupported signing method!")
+			raise JWT::SignError.new("Unsupported signing method!")
 		end
 	end
 
@@ -144,7 +147,7 @@ module JWT
 			return key.dsa_verify_asn1(SIGNATURES[alg.gsub("ES","")].digest(data),signature)
 			#return key.verify(SIGNATURES[alg.gsub("ES","")],signature, data)
 		else
-			raise NotImplementedError.new("Unsupported signing method!")
+			raise JWT::VerificationError.new("Unsupported signing method!")
 		end
 	end
 

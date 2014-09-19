@@ -36,7 +36,13 @@ header_options are the current typ and alg.  you can also pass in any custom fie
 	:typ => this will always be set to JWT
 	:custom_header => you can supply custom header fields.
 
-If there are any errors a JWT:SignError will be raised.
+If there are any errors a JWT:SignError will be raised. Example:
+	
+	begin
+		JWT.sign({:name => "Chris",:admin => false},nil,{},{:alg => "HS512"})
+	rescue JWT::SignError => e
+		puts e.message
+	end
 
 To decode a token:
 
@@ -52,6 +58,14 @@ Note this will not verify the token.  This will return a DecodeResponse object, 
 To verify a token:
 
 	JWT.verify(token,secret,options)
+
+	//Example
+
+	begin
+		JWT.verify(token,"secert")
+	rescue JWT::VerificationError => e
+		puts e.message
+	end
 
 This will return a DecodeResponse object as seen above.  If there are any errors a JWT::VerificationError will be raised.
 
