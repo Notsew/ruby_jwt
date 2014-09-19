@@ -4,7 +4,7 @@ require 'json'
 
 module JWT
 
-	class DecodeError < StandardError;end
+	class VerificationError < StandardError;end
 	class SignError < StandardError;end
 	class DecodeResponse
 		attr_accessor :header, :payload, :signature
@@ -14,15 +14,15 @@ module JWT
 			@signature = signature
 		end
 	end
-	class VerificationResponse
-		attr_accessor :success, :message, :decoded_token
+	# class VerificationResponse
+	# 	attr_accessor :success, :message, :decoded_token
 
-		def initialize(success,message, decoded = nil)
-			@success = success
-			@message = message
-			@decoded_token = decoded
-		end
-	end
+	# 	def initialize(success,message, decoded = nil)
+	# 		@success = success
+	# 		@message = message
+	# 		@decoded_token = decoded
+	# 	end
+	# end
 
 	# class OpenSSL::PKey::EC
 	# 	alias_method :private?, :private_key?
@@ -42,7 +42,7 @@ module JWT
 		end
 		payload[:iat] = Time.now.to_i
 		if(payload_options[:exp])
-			payload_options	[:exp] += payload[:iat] 
+			payload_options[:exp] += payload[:iat] 
 		end
 
 		if(payload_options[:nbf])
@@ -63,34 +63,36 @@ module JWT
 	end
 
 	def verify(token,secret,options={})
-		return VerificationResponse.new(false, "JWT cannot be blank") if !token or token.empty?
+		raise VerificationError.new("JWT cannot be blank") if !token or token.empty?
 		jwt_parts = token.split(".")
 		jwt = decode(token)
 		alg = jwt.header[:alg]
-		return VerificationResponse.new(false,"Key cannot be blank if algorithm is not 'none'") if(alg != "none" and !secret) 
+		raise VerificationError.new("Key cannot be blank if algorithm is not 'none'") if(alg != "none" and !secret) 
+		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count < 3 and alg != "none")
+		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count < 2 and alg == "none")
 		payload = jwt.payload
 		signature = base64urldecode(jwt.signature) if alg != "none"
 		current_time = Time.now.to_i
 		if(payload[:exp] and current_time >= payload[:exp])
-			return VerificationResponse.new(false,"JWT is expired.")
+			raise VerificationError.new("JWT is expired.")
 		end
 
 		if(payload[:nbf] and current_time < payload[:nbf])
-			return VerificationResponse.new(false, "JWT nbf has not passed yet.")
+			raise VerificationError.new( "JWT nbf has not passed yet.")
 		end
 
 		if(options[:iss])
-			return VerificationResponse.new(false,"JWT issuer is invalid.") if options[:iss] != payload[:iss]
+			raise VerificationError.new("JWT issuer is invalid.") if options[:iss] != payload[:iss]
 		end
 
 		if(options[:aud])
 			audience = (options[:aud].is_a? Array) ? options[:aud] : [options[:aud]]
-			return VerificationResponse.new(false,"JWT audience is invalid.") if !audience.include? payload[:aud]
+			raise VerificationError.new("JWT audience is invalid.") if !audience.include? payload[:aud]
 		end
 
-		return VerificationResponse.new(false,"JWT signature is invalid.") if !verify_signature(alg,secret,jwt_parts[0..1].join("."),signature)
+		raise VerificationError.new("JWT signature is invalid.") if !verify_signature(alg,secret,jwt_parts[0..1].join("."),signature)
 
-		return VerificationResponse.new(true,"JWT is valid.",jwt)
+		return jwt
 	end
 
 
@@ -163,7 +165,7 @@ module JWT
 				raise JWT::DecodeError.new("Illegal base64 string!")
 			end
 		rescue ArgumentError => e
-			raise JWT::DecodeError.new(e.message)
+			raise JWT::VerificationError.new(e.message)
 		end
 
 	end

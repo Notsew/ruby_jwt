@@ -11,11 +11,12 @@ To create/Sign a JWT
 
 	JWT.sign(payload,secret,payload_options,header_options)
 
+Note that this gem uses symbols in all of the hashes, usings strings will currently break things.
 header_options and payload_options are hashes, they can be set to nil or you can pass an empty hash if not setting any options.
 
 Secret can either be a RSA key, shared secret for HMAC, "none" for plaintext JWTs, or an ECDSA key
 
-payload is the data you are wanting to send.
+payload is the data you are wanted to send.
 
 	{:name => "Chris", :role => "Admin"}
 
@@ -39,7 +40,7 @@ To decode a token:
 
 	JWT.decode(token)
 
-Note this will not verify the token.  This will return a DecodeResponse object, it consists of header, payload, and signature.  The header and payload are hashses that use symbols.
+Note this will not verify the token.  This will return a DecodeResponse object, it consists of header, payload, and signature
 
 	decoded = JWT.decode(token)
 	decoded.payload # displays the payload
@@ -50,19 +51,14 @@ To verify a token:
 
 	JWT.verify(token,secret,options)
 
-This will return a verificationResponse object, it consists of success and message and if success is true it contains the decoded token which is a DecodeResponse object as seen above.
+This will return a DecodeResponse object as seen above
 
-The options field is where you pass a hash of the audience and/or the issuer. Audience can be an array or a string, this library will verify that the audience in the token is included in the audience that you supply.  Same with the issuer, if issuer is passed in, they will be compared and if different will return false. 
+The options field is where you pass a hash of the audience and/or the issuer. Audience can be an array or a string, this library will verify that the audience in the token is included in the audience that you supply.  Same with the issuer, if issuer is passed in, they will be compared and if different will raise an error.
+
+If there are any errors a VerificationError will be raised.
 
 	verified = JWT.verify(token,"secret",{:iss => "my_app"})
-	// if the issuer is wrong it will respond with the Verification response object with success = false and message = "JWT issuer is invalid"
-	// if the token has expired it will respond with a VerificationResponse object with success  = false and message = "JWT is expired."
-	// if the token nbf has not passed yet, it will return false with the proper message.
-	// if the token's audience is not included in the audience you pass in, this method will retun false with message of JWT audience is invalid.
-	// if the token is valid success will be true and decoded_token will contain a DecodeResponse object.
-	verified.success == true
-	verified.decoded_token.header
-	verified.decoded_token.payload[:some_value]
+	verified.payload[:user_id]
 
 
 # Currently Supported Algorithms 
