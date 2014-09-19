@@ -5,9 +5,12 @@ class ApplicationController < ActionController::Base
 
   def verify_token
   	if(cookies[:session_token])
-  		x = JWT.verify(cookies[:session_token],"secret")
-  		redirect_to(root_path) if !x.success
-  		@current_user = User.find(x.decoded_token.payload[:user_id])
+      begin
+  		  x = JWT.verify(cookies[:session_token],"secret")
+  		  @current_user = User.find(x.payload[:user_id])
+      rescue JWT::VerificationError => e
+        redirect_to root_path
+      end
   	else
   		redirect_to root_path
   	end

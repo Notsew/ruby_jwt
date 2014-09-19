@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   end
 
   def login
-    cookies[:session_token] = JWT.sign({:user_id => 1},"secret",{},{:alg => "HS384"})
+    cookies[:session_token] = JWT.sign({:user_id => 1},"secret",{:exp => 10},{:alg => "HS384"})
   end
 
   # GET /users/1/edit

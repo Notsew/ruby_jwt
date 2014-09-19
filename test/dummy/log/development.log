@@ -1110,3 +1110,983 @@ Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-18 20:57:3
 
 
 Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-18 20:57:36 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:13:46 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+Completed 500 Internal Server Error in 1ms
+
+NoMethodError (undefined method `success' for #<JWT::DecodeResponse:0x00000005bb2178>):
+  app/controllers/application_controller.rb:9:in `verify_token'
+
+
+  Rendered /home/chris/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.6ms)
+  Rendered /home/chris/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.0ms)
+  Rendered /home/chris/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (7.8ms)
+  Rendered /home/chris/.rvm/gems/ruby-2.1.2/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.4ms)
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:15:15 -0400
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 48ms (Views: 38.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:16 -0400
+
+
+Started GET "/users/1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:19 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:15:20 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:21 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:22 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:22 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:22 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:22 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:15:29 -0400
+Processing by UsersController#index as HTML
+Redirected to http://192.168.0.11:3000/
+Filter chain halted as :verify_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 192.168.0.27 at 2014-09-19 18:15:29 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 20ms (Views: 19.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:30 -0400
+
+
+Started GET "/login" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 20ms (Views: 19.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:34 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 19.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 25ms (Views: 24.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:43 -0400
+
+
+Started GET "/users/1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 21ms (Views: 19.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:15:45 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 54ms (Views: 46.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:18:59 -0400
+
+
+Started GET "/login" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 41ms (Views: 40.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:00 -0400
+
+
+Started GET "/login" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 20ms (Views: 19.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:01 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 23ms (Views: 21.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:09 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:10 -0400
+
+
+Started GET "/users/1" for 192.168.0.27 at 2014-09-19 18:19:11 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Redirected to http://192.168.0.11:3000/
+Filter chain halted as :verify_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 192.168.0.27 at 2014-09-19 18:19:11 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 25ms (Views: 24.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:11 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:11 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:11 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:12 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:12 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:12 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:12 -0400
+
+
+Started GET "/users/1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Redirected to http://192.168.0.11:3000/
+Filter chain halted as :verify_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 19ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:14 -0400
+
+
+Started GET "/login" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 20ms (Views: 20.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+
+
+Started GET "/login" for 192.168.0.27 at 2014-09-19 18:19:33 -0400
+Processing by UsersController#login as HTML
+  Rendered users/login.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 20ms (Views: 20.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:34 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 20.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:35 -0400
+
+
+Started GET "/users/1" for 192.168.0.27 at 2014-09-19 18:19:36 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered users/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 20.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:37 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 20.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 22ms (Views: 21.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:38 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 21ms (Views: 20.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:39 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 21ms (Views: 20.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:40 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 22.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:41 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 21ms (Views: 20.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:42 -0400
+
+
+Started GET "/users" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+Processing by UsersController#index as HTML
+Redirected to http://192.168.0.11:3000/
+Filter chain halted as :verify_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 20ms (Views: 19.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:43 -0400
+
+
+Started GET "/" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 19ms (Views: 19.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:44 -0400
+
+
+Started GET "/users/1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+Redirected to http://192.168.0.11:3000/
+Filter chain halted as :verify_token rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+Processing by MainController#index as HTML
+  Rendered main/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 19ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/main.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+
+
+Started GET "/assets/scaffold.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+
+
+Started GET "/assets/main.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+
+
+Started GET "/assets/users.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+
+
+Started GET "/assets/application.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+
+
+Started GET "/assets/users.css?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
+
+
+Started GET "/assets/application.js?body=1" for 192.168.0.27 at 2014-09-19 18:19:45 -0400
