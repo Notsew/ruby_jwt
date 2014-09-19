@@ -36,6 +36,8 @@ header_options are the current typ and alg.  you can also pass in any custom fie
 	:typ => this will always be set to JWT
 	:custom_header => you can supply custom header fields.
 
+If there are any errors a JWT:SignError will be raised.
+
 To decode a token:
 
 	JWT.decode(token)
@@ -51,11 +53,9 @@ To verify a token:
 
 	JWT.verify(token,secret,options)
 
-This will return a DecodeResponse object as seen above
+This will return a DecodeResponse object as seen above.  If there are any errors a JWT::VerificationError will be raised.
 
 The options field is where you pass a hash of the audience and/or the issuer. Audience can be an array or a string, this library will verify that the audience in the token is included in the audience that you supply.  Same with the issuer, if issuer is passed in, they will be compared and if different will raise an error.
-
-If there are any errors a VerificationError will be raised.
 
 	verified = JWT.verify(token,"secret",{:iss => "my_app"})
 	verified.payload[:user_id]
