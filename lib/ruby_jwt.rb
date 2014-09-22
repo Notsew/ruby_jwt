@@ -7,22 +7,14 @@ module JWT
 	class VerificationError < StandardError;end
 	class SignError < StandardError;end
 	class DecodeResponse
-		attr_accessor :header, :payload, :signature
-		def initialize(header,payload,signature)
+		attr_accessor :header, :payload, :signature, :sign_input
+		def initialize(header,payload,signature,sign_input)
 			@header = header
 			@payload = payload
 			@signature = signature
+			@sign_input = sign_input
 		end
 	end
-	# class VerificationResponse
-	# 	attr_accessor :success, :message, :decoded_token
-
-	# 	def initialize(success,message, decoded = nil)
-	# 		@success = success
-	# 		@message = message
-	# 		@decoded_token = decoded
-	# 	end
-	# end
 
 	# class OpenSSL::PKey::EC
 	# 	alias_method :private?, :private_key?
@@ -59,22 +51,21 @@ module JWT
 		jwt_parts = token.split(".")
 		header = json_decode_data(jwt_parts[0])
 		payload = json_decode_data(jwt_parts[1])
-		return DecodeResponse.new(header,payload,jwt_parts[2])
+		return DecodeResponse.new(header,payload,jwt_parts[2],jwt_parts[0..1].join("."))
 	end
 
 	def verify(token,secret,options={})
 		raise VerificationError.new("JWT cannot be blank") if !token or token.empty?
 		jwt_parts = token.split(".")
+		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count != 3 and secret)
+		raise VerificationError.new("JWT has invalid number of segments.") if((jwt_parts.count < 2 or jwt_parts.count > 3)  and !secret)
+		#raise VerificationError.new("JWT signature is required.") if(jwt_parts[2].nil? and secret) 
 		jwt = decode(token)
 		alg = jwt.header[:alg]
-		
-		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count < 3 and alg != "none")
-		raise VerificationError.new("JWT has invalid number of segments.") if(jwt_parts.count < 2 and alg == "none")
 
 		payload = jwt.payload
 		signature = jwt.signature.nil? ? "none" : base64urldecode(jwt.signature)
-
-		raise VerificationError.new("JWT signature is required.") if(jwt.signature.nil? and !secret.nil?) 
+		
 		current_time = Time.now.to_i
 		if(payload[:exp] and current_time >= payload[:exp])
 			raise VerificationError.new("JWT is expired.")
@@ -93,7 +84,7 @@ module JWT
 			raise VerificationError.new("JWT audience is invalid.") if !audience.include? payload[:aud]
 		end
 
-		raise VerificationError.new("JWT signature is invalid.") if !verify_signature(alg,secret,jwt_parts[0..1].join("."),signature)
+		raise VerificationError.new("JWT signature is invalid.") if !verify_signature(alg,secret,jwt.sign_input,signature)
 
 		return jwt
 	end
@@ -103,20 +94,16 @@ module JWT
 	#utility methods
 
 	def json_decode_data(data)
-		if defined?(Rails)
-			return JSON.load(base64urldecode(data)).symbolize_keys!
-		else
-			return symbolize_keys(JSON.load(base64urldecode(data)))
-		end
+		return JSON.parse(base64urldecode(data),{:symbolize_names => true})
 	end
 
 	def encode_header(header_options)
 		header  = {:typ => "JWT"}.merge(header_options)
-		return base64urlencode(JSON.dump(header))
+		return base64urlencode(JSON.generate(header))
 	end
 
 	def encode_payload(payload)
-		return base64urlencode(JSON.dump(payload))
+		return base64urlencode(JSON.generate(payload))
 	end
 
 	def encode_signature(data,key,alg)
@@ -171,10 +158,6 @@ module JWT
 			raise JWT::VerificationError.new(e.message)
 		end
 
-	end
-
-	def symbolize_keys(hash)
-		return hash.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 	end
 
 	def time_compare(a,b)

@@ -1,0 +1,7 @@
+lib/ruby_jwt_alt.rb
+lib/ruby_jwt_alt_second.rb
+test/dummy/app/controllers/application_controller.rb.~1~
+lib/ruby_jwt.rb.~1~
+test/ruby_jwt_test.rb.~1~
+lib/ruby_jwt/version.rb.~1~
+test/dummy/log/test.log
