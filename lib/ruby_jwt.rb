@@ -41,8 +41,9 @@ module JWT
 			payload_options[:nbf] += payload[:iat]
 		end
 		payload.merge!(payload_options)
-		jwt_parts << encode_header(header_options)
-		jwt_parts << encode_payload(payload)
+		header_options[:typ] = header_options[:typ] || "JWT"
+		jwt_parts << encode_data(header_options)
+		jwt_parts << encode_data(payload)
 		jwt_parts << encode_signature(jwt_parts.join("."),key, header_options[:alg])
 		return jwt_parts.join(".")
 	end
@@ -97,13 +98,8 @@ module JWT
 		return JSON.parse(base64urldecode(data),{:symbolize_names => true})
 	end
 
-	def encode_header(header_options)
-		header  = {:typ => "JWT"}.merge(header_options)
-		return base64urlencode(JSON.generate(header))
-	end
-
-	def encode_payload(payload)
-		return base64urlencode(JSON.generate(payload))
+	def encode_data(data)
+		return base64urlencode(JSON.generate(data))
 	end
 
 	def encode_signature(data,key,alg)
