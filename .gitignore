@@ -6,3 +6,4 @@ test/ruby_jwt_test.rb.~1~
 lib/ruby_jwt/version.rb.~1~
 test/dummy/log/test.log
 *.log
+prod_merge.sh
