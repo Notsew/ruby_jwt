@@ -6,6 +6,7 @@ module JWT
 
 	class VerificationError < StandardError;end
 	class SignError < StandardError;end
+	class DecodeError < StandardError;end
 	class DecodeResponse
 		attr_accessor :header, :payload, :signature, :sign_input
 		def initialize(header,payload,signature,sign_input)
